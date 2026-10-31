@@ -32,6 +32,7 @@ import urllib.request
 DEFAULT_API_VERSION = "202608"  # LinkedIn supports each monthly version for about a year; override with LINKEDIN_API_VERSION
 API = "https://api.linkedin.com/rest"
 MAX_CHARS = 3000
+MIN_SOFT_BEFORE_ASK = 3  # every "ask" (promotional) post needs at least this many soft-CTA posts before it
 
 
 # ---------- helpers ----------
@@ -162,6 +163,27 @@ class LinkedIn:
         return lower.get("x-restli-id") or lower.get("x-linkedin-id")
 
 
+def posted_history(workspace):
+    """CTA types of already-published posts, oldest first."""
+    rows = []
+    for path in glob.glob(os.path.join(workspace, "posted", "*.md")):
+        try:
+            meta, _, _, _ = read_post(path)
+        except Exception:
+            continue
+        rows.append((meta.get("posted_at") or meta.get("publish_at") or "", (meta.get("cta_type") or "soft").lower()))
+    return [cta for _, cta in sorted(rows)]
+
+
+def soft_since_last_ask(history):
+    n = 0
+    for cta in reversed(history):
+        if cta == "ask":
+            break
+        n += 1
+    return n
+
+
 # ---------- main ----------
 
 def build(meta, body, env, workspace):
@@ -222,6 +244,7 @@ def main():
         sys.exit("LINKEDIN_ACCESS_TOKEN not set. Run scripts/linkedin_auth.py first.")
     li = LinkedIn(token or "", env.get("LINKEDIN_API_VERSION", DEFAULT_API_VERSION))
 
+    history = posted_history(ws)
     posted = failed = 0
     for path in files:
         name = os.path.basename(path)
@@ -245,8 +268,14 @@ def main():
             continue
         try:
             author, payload, image_path = build(meta, body, env, ws)
+            cta_type = (meta.get("cta_type") or "soft").lower()
+            if cta_type == "ask" and soft_since_last_ask(history) < MIN_SOFT_BEFORE_ASK:
+                raise ValueError(f"promotional (ask) post blocked: only {soft_since_last_ask(history)} "
+                                 f"soft-CTA post(s) since the last ask; at least {MIN_SOFT_BEFORE_ASK} are required. "
+                                 "Reschedule it later or change it to a soft-CTA value post.")
             if args.dry_run:
-                print(f"WOULD POST {name} → {meta.get('destination', 'personal')} ({author})"
+                history.append(cta_type)
+                print(f"WOULD POST [{cta_type}] {name} → {meta.get('destination', 'personal')} ({author})"
                       f"{' + image ' + image_path if image_path else ''}\n---\n{body}\n---")
                 continue
             if image_path:
@@ -258,6 +287,7 @@ def main():
                               "posted_at": now.isoformat(timespec="seconds")})
             os.makedirs(os.path.join(ws, "posted"), exist_ok=True)
             shutil.move(path, os.path.join(ws, "posted", name))
+            history.append(cta_type)
             posted += 1
             print(f"POSTED {name} → {url or '(no URL returned)'}")
             if meta.get("first_comment"):

@@ -63,7 +63,7 @@ several platforms.
 
 Common options that support LinkedIn profiles and Pages include Buffer, Hootsuite,
 Later, Publer, Sprout Social, Metricool, Agorapulse, and **GoHighLevel's Social
-Planner** (great if their funnels and email are already in GoHighLevel).
+Planner** (handy if they already use GoHighLevel).
 
 Ways Claude can feed the tool:
 1. **Bulk upload:** Most of these accept a CSV. Claude exports the approved queue in the tool's CSV format (ask the user to download the tool's sample CSV so the columns match exactly).
@@ -103,11 +103,10 @@ Always do a `--dry-run` first. It shows what *would* be posted without posting.
 - Already uses GoHighLevel, Buffer, Hootsuite, or similar → **C**
 - Comfortable with a terminal, wants no subscription → **D** for the profile (plus A, B, or C for a Page unless they get Community Management API access)
 
-## About "comment to get it" funnels
+## About comments and DMs
 
-LinkedIn doesn't let ordinary developer apps read comments on personal posts or
-send DMs automatically, and automating DMs through unofficial tools risks the
-account. So be honest with users:
-- Claude can write the post and the DM reply template.
-- The user (or a team member) sends the DM. Or skip the DM entirely and put the link in the post, the first comment, or the Featured section.
-- See `funnels.md` for the details.
+This skill never writes "comment [WORD] to get it" posts. It also doesn't automate
+replies or DMs. LinkedIn doesn't let ordinary apps read comments on personal
+posts or send DMs, and third-party auto-DM tools risk the account. Claude can
+suggest replies to comments the user pastes in, and the user sends them
+personally.

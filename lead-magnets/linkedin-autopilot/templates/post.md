@@ -7,10 +7,11 @@ visibility: PUBLIC       # PUBLIC | CONNECTIONS (CONNECTIONS = personal only)
 image: media/example.jpg # optional, path relative to linkedin-autopilot/
 image_alt: "Describe the image for screen readers"
 pillar: ""
-post_type: ""            # teach | story | proof | opinion | offer | lead-magnet | ...
-supports: ""             # which offer or lead magnet this post serves
+post_type: ""            # teach | story | proof | opinion | behind-the-scenes | ...
+cta_type: soft           # soft (default: use it, reflect, discuss) | ask (promotes something; needs 3+ soft posts before it)
+cta: ""                  # e.g. "Run this before your next Monday priorities meeting."
+promotes: ""             # ask posts only: which item from offers.md
 first_comment: ""        # optional; post this right after publishing
-dm_template: ""          # optional; for "comment WORD" CTAs
 posted_url: ""           # filled in after publishing
 ---
 Write the post text here exactly as it should appear on LinkedIn.

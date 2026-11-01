@@ -1,4 +1,4 @@
-# LinkedIn Autopilot: a Claude skill
+# Post Autopilot: a Claude skill
 
 Teach Claude to plan, write, schedule, and post your LinkedIn content for your
 personal profile, your company Page, or both, so you show up consistently
@@ -28,15 +28,15 @@ like a template.
 
 ### Claude Code (terminal, desktop app, or IDE)
 1. Unzip this folder.
-2. Move the `linkedin-autopilot` folder to:
-   - **All projects:** `~/.claude/skills/linkedin-autopilot/`
-   - **One project only:** `<your-project>/.claude/skills/linkedin-autopilot/`
-3. Start Claude Code and say: **"Set up my LinkedIn."**
+2. Move the `post-autopilot` folder to:
+   - **All projects:** `~/.claude/skills/post-autopilot/`
+   - **One project only:** `<your-project>/.claude/skills/post-autopilot/`
+3. Start Claude Code and say: **"Start Post Autopilot."**
 
 ### Claude.ai / Claude desktop app
 1. Go to **Settings → Capabilities** (or **Skills**) and make sure Skills are turned on.
 2. Click **Upload skill** and choose the `.zip` file.
-3. Start a new chat and say: **"Set up my LinkedIn."**
+3. Start a new chat and say: **"Start Post Autopilot."**
 
 > Automatic posting with Method D (the scripts) needs Claude Code or a computer
 > that can run Python 3. Methods A–C work anywhere.
@@ -49,7 +49,7 @@ Plan on 15–20 minutes for the interview. Have these handy:
 - 3–10 things you've written (past posts, emails, newsletters)
 - A folder of photos or brand assets you like
 
-Everything Claude learns is saved to a `linkedin-autopilot/` folder, so you only
+Everything Claude learns is saved to a `post-autopilot/` folder, so you only
 do the interview once.
 
 ## Everyday prompts
@@ -64,18 +64,18 @@ do the interview once.
 ## What's inside
 
 ```
-linkedin-autopilot/
+post-autopilot/
 ├── SKILL.md                      # instructions Claude follows
 ├── references/
 │   ├── interview.md              # the onboarding questions
 │   ├── posting-methods.md        # the 4 ways to publish
-│   ├── linkedin-api-setup.md     # step-by-step API setup (Method D)
+│   ├── api-setup.md     # step-by-step API setup (Method D)
 │   ├── content-playbook.md       # post formats & calendar planning
 │   └── ctas-and-offers.md        # soft calls to action + optional, limited promotion
 ├── templates/                    # profile, voice, calendar, post, results, GitHub Action
 └── scripts/
-    ├── linkedin_auth.py          # one-time LinkedIn login (official OAuth)
-    └── linkedin_post.py          # publishes approved posts when they're due
+    ├── connect_account.py          # one-time LinkedIn login (official OAuth)
+    └── publish_posts.py          # publishes approved posts when they're due
 ```
 
 ## Good to know
@@ -84,3 +84,6 @@ linkedin-autopilot/
 - **No pushy posts.** Posts never say "comment WORD to get it" and never hold value back. At least 3 value posts come before any promotional post, and you decide how often promotion happens (including never).
 - **Company Page posting through the API** requires LinkedIn to approve your developer app for its Community Management API. Until then, use Method A, B, or C for your Page.
 - LinkedIn updates its screens and API now and then. If a step looks different, tell Claude what you see and it'll help you through it.
+
+---
+_Post Autopilot is an independent project. It is not affiliated with, endorsed by, or sponsored by LinkedIn Corporation or Anthropic. LinkedIn is a trademark of LinkedIn Corporation, and Claude is a trademark of Anthropic, used here only to describe compatibility._

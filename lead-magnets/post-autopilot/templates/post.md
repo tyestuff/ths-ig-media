@@ -1,10 +1,10 @@
 ---
-# One file per post. Save in linkedin-autopilot/queue/ as YYYY-MM-DD-short-title.md
+# One file per post. Save in post-autopilot/queue/ as YYYY-MM-DD-short-title.md
 status: draft            # draft | approved | posted | failed
 publish_at: 2026-11-04T09:00:00-05:00   # ISO 8601 with time zone offset
 destination: personal    # personal | page
 visibility: PUBLIC       # PUBLIC | CONNECTIONS (CONNECTIONS = personal only)
-image: media/example.jpg # optional, path relative to linkedin-autopilot/
+image: media/example.jpg # optional, path relative to post-autopilot/
 image_alt: "Describe the image for screen readers"
 pillar: ""
 post_type: ""            # teach | story | proof | opinion | behind-the-scenes | ...

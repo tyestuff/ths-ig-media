@@ -1,5 +1,5 @@
 # Copy to .github/workflows/linkedin.yml in a PRIVATE repository that contains
-# your linkedin-autopilot/ folder and the scripts/ folder from this skill.
+# your post-autopilot/ folder and the scripts/ folder from this skill.
 # Add repository secrets: LINKEDIN_ACCESS_TOKEN, LINKEDIN_PERSON_URN (and LINKEDIN_ORG_ID if posting to a Page).
 name: Publish scheduled LinkedIn posts
 
@@ -28,10 +28,10 @@ jobs:
           LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
           LINKEDIN_PERSON_URN: ${{ secrets.LINKEDIN_PERSON_URN }}
           LINKEDIN_ORG_ID: ${{ secrets.LINKEDIN_ORG_ID }}
-        run: python3 scripts/linkedin_post.py --workspace linkedin-autopilot
+        run: python3 scripts/publish_posts.py --workspace post-autopilot
       - name: Save results
         run: |
-          git config user.name "linkedin-autopilot"
-          git config user.email "linkedin-autopilot@users.noreply.github.com"
-          git add -A linkedin-autopilot
+          git config user.name "post-autopilot"
+          git config user.email "post-autopilot@users.noreply.github.com"
+          git add -A post-autopilot
           git diff --cached --quiet || (git commit -m "Published scheduled LinkedIn posts" && git push)

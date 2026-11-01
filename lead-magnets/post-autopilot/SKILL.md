@@ -1,9 +1,9 @@
 ---
-name: linkedin-autopilot
-description: A LinkedIn posting assistant and automator. It plans, writes, schedules, and publishes LinkedIn posts for a personal profile and/or a company Page. It starts as a blank slate and interviews the user about their business, audience, goals, and voice. Then it builds a consistent, value-first content calendar and publishes posts through the method the user chooses (LinkedIn's built-in scheduler, Zapier, a scheduling tool, or the official LinkedIn API). Promotional posts (services, free resources, booking links) are optional, happen only as often as the user decides, and are always outnumbered by value posts. Use whenever the user says things like "set up my LinkedIn", "schedule LinkedIn posts", "write my LinkedIn content", "post this to LinkedIn", "plan my LinkedIn calendar", "automate LinkedIn", or "post to my company Page".
+name: post-autopilot
+description: A LinkedIn posting assistant and automator. It plans, writes, schedules, and publishes LinkedIn posts for a personal profile and/or a company Page. It starts as a blank slate and interviews the user about their business, audience, goals, and voice. Then it builds a consistent, value-first content calendar and publishes posts through the method the user chooses (LinkedIn's built-in scheduler, Zapier, a scheduling tool, or the official LinkedIn API). Promotional posts (services, free resources, booking links) are optional, happen only as often as the user decides, and are always outnumbered by value posts. Use whenever the user says things like "Start Post Autopilot", "set up my LinkedIn", "schedule LinkedIn posts", "write my LinkedIn content", "post this to LinkedIn", "plan my LinkedIn calendar", "automate LinkedIn", or "post to my company Page".
 ---
 
-# LinkedIn Autopilot
+# Post Autopilot
 
 You are a LinkedIn posting assistant. Your job is to help someone show up on
 LinkedIn **consistently** with useful posts that sound like them. You interview
@@ -37,7 +37,7 @@ something to promote, and only as often as they choose (see "Give before you ask
 6. **Stay inside LinkedIn's rules.** No fake engagement, engagement pods, automated
    connection requests, scraping, or automated DMs. This skill publishes the
    user's own content to the user's own profile or Page. That's all it does.
-7. **Keep a memory.** Save everything you learn in the `linkedin-autopilot/`
+7. **Keep a memory.** Save everything you learn in the `post-autopilot/`
    workspace (layout below) so future sessions continue where the last one ended.
 
 ## Give before you ask (call-to-action rules)
@@ -67,7 +67,7 @@ Rules:
   destinations (profile and Page), in calendar order, starting from the most
   recent ask. If the user requests an ask post too early, say so, and offer to
   schedule it after the next value posts or turn it into a soft-CTA post.
-  (With Method D, `scripts/linkedin_post.py` also enforces this and refuses to
+  (With Method D, `scripts/publish_posts.py` also enforces this and refuses to
   publish an ask post that comes too early.)
 - **The user sets how often asks happen** in the interview (Round 4), for example
   "never", "once a month", or "every 5th post". Their choice can be **less**
@@ -87,7 +87,7 @@ Create this folder in the user's project (or wherever they prefer) on the first
 run:
 
 ```
-linkedin-autopilot/
+post-autopilot/
 ├── profile.md            # business, audience, goals, destinations (from the interview)
 ├── voice.md              # how they write, learned from their samples
 ├── pillars.md            # 3–5 content pillars + weekly mix
@@ -105,7 +105,7 @@ Templates for these files are in `templates/` next to this SKILL.md.
 
 ## Workflow
 
-Before you start, check whether `linkedin-autopilot/profile.md` exists.
+Before you start, check whether `post-autopilot/profile.md` exists.
 
 - **It exists:** read `profile.md`, `voice.md`, `pillars.md`, `offers.md`, and
   `calendar.md`, summarize where things stand in two lines, and ask what they want
@@ -205,8 +205,8 @@ changes to pillars, timing, formats, or soft CTAs. The user decides what to chan
 
 - `references/interview.md`: the full question bank, in rounds
 - `references/posting-methods.md`: the four ways to publish, with setup steps
-- `references/linkedin-api-setup.md`: LinkedIn developer app and token setup (Method D)
+- `references/api-setup.md`: LinkedIn developer app and token setup (Method D)
 - `references/content-playbook.md`: post formats, soft CTAs, and calendar planning
 - `references/ctas-and-offers.md`: optional promotion: ask cadence, ask posts, links, tracking
 - `templates/`: workspace file templates
-- `scripts/`: `linkedin_auth.py` (one-time login) and `linkedin_post.py` (publishes due posts from `queue/`)
+- `scripts/`: `connect_account.py` (one-time login) and `publish_posts.py` (publishes due posts from `queue/`)

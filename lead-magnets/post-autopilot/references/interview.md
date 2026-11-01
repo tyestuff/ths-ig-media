@@ -76,7 +76,7 @@ post will use a soft CTA.
 
 ## Round 6: Media → `media-library.md` + `media/`
 
-1. Do you have photos you'd like to use regularly? (Headshots, working shots, events, team, product, workspace.) Drop them into `linkedin-autopilot/media/`, or share a folder link.
+1. Do you have photos you'd like to use regularly? (Headshots, working shots, events, team, product, workspace.) Drop them into `post-autopilot/media/`, or share a folder link.
 2. Any brand assets? (Logo, colors, fonts, Canva templates, a brand kit.)
 3. Any existing material worth reusing? (Slide decks, PDFs, videos, podcast episodes, blog posts, talks.) These become a content mine.
 4. Any visual inspiration? Accounts, posts, or styles you want images to feel like.

@@ -1,20 +1,20 @@
 #!/usr/bin/env python3
 """
-Publish approved, due LinkedIn posts from linkedin-autopilot/queue/.
+Publish approved, due LinkedIn posts from post-autopilot/queue/.
 
 A post is published when its front matter has `status: approved` and its
 `publish_at` time is now or in the past. After publishing, the file gets
-`status: posted` and `posted_url`, and moves to linkedin-autopilot/posted/.
+`status: posted` and `posted_url`, and moves to post-autopilot/posted/.
 Failures get `status: failed` and an `error` line, and stay in queue/.
 
 Usage:
-    python3 scripts/linkedin_post.py --dry-run          # show what would post; posts nothing
-    python3 scripts/linkedin_post.py                    # publish everything that's due
-    python3 scripts/linkedin_post.py --file linkedin-autopilot/queue/2026-11-04-hello.md --now
+    python3 scripts/publish_posts.py --dry-run          # show what would post; posts nothing
+    python3 scripts/publish_posts.py                    # publish everything that's due
+    python3 scripts/publish_posts.py --file post-autopilot/queue/2026-11-04-hello.md --now
                                                          # publish one file immediately (must be approved)
 
 Reads LINKEDIN_ACCESS_TOKEN, LINKEDIN_PERSON_URN, optional LINKEDIN_ORG_ID and
-LINKEDIN_API_VERSION from environment variables or linkedin-autopilot/.env.
+LINKEDIN_API_VERSION from environment variables or post-autopilot/.env.
 Standard library only.
 """
 import argparse
@@ -196,7 +196,7 @@ def build(meta, body, env, workspace):
     else:
         author = env.get("LINKEDIN_PERSON_URN")
         if not author:
-            raise ValueError("LINKEDIN_PERSON_URN not set. Run scripts/linkedin_auth.py first")
+            raise ValueError("LINKEDIN_PERSON_URN not set. Run scripts/connect_account.py first")
     if not body:
         raise ValueError("post body is empty")
     if len(body) > MAX_CHARS:
@@ -222,7 +222,7 @@ def build(meta, body, env, workspace):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--workspace", default="linkedin-autopilot")
+    ap.add_argument("--workspace", default="post-autopilot")
     ap.add_argument("--file", help="publish just this queue file")
     ap.add_argument("--now", action="store_true", help="ignore publish_at (still requires status: approved)")
     ap.add_argument("--dry-run", action="store_true", help="show what would be posted without posting")
@@ -237,11 +237,11 @@ def main():
     if exp:
         days = (dt.date.fromisoformat(exp) - now.date()).days
         if days <= 7:
-            print(f"WARNING: LinkedIn token expires in {days} day(s) ({exp}). Re-run scripts/linkedin_auth.py.")
+            print(f"WARNING: LinkedIn token expires in {days} day(s) ({exp}). Re-run scripts/connect_account.py.")
 
     token = env.get("LINKEDIN_ACCESS_TOKEN")
     if not token and not args.dry_run:
-        sys.exit("LINKEDIN_ACCESS_TOKEN not set. Run scripts/linkedin_auth.py first.")
+        sys.exit("LINKEDIN_ACCESS_TOKEN not set. Run scripts/connect_account.py first.")
     li = LinkedIn(token or "", env.get("LINKEDIN_API_VERSION", DEFAULT_API_VERSION))
 
     history = posted_history(ws)

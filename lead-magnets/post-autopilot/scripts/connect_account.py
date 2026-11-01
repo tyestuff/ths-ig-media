@@ -1,20 +1,20 @@
 #!/usr/bin/env python3
 """
-One-time LinkedIn login for LinkedIn Autopilot (Method D).
+One-time LinkedIn login for Post Autopilot (Method D).
 
 Opens your browser to LinkedIn's official consent screen, receives the
 authorization code on http://localhost:8765/callback, exchanges it for an
-access token, and saves it to linkedin-autopilot/.env.
+access token, and saves it to post-autopilot/.env.
 
 Your password is entered only on linkedin.com; this script never sees it.
 
 Usage:
-    python3 scripts/linkedin_auth.py                 # personal profile posting
-    python3 scripts/linkedin_auth.py --org           # + company Page posting (needs Community Management API)
-    python3 scripts/linkedin_auth.py --workspace path/to/linkedin-autopilot
+    python3 scripts/connect_account.py                 # personal profile posting
+    python3 scripts/connect_account.py --org           # + company Page posting (needs Community Management API)
+    python3 scripts/connect_account.py --workspace path/to/post-autopilot
 
 Requires LINKEDIN_CLIENT_ID and LINKEDIN_CLIENT_SECRET in the .env file
-(see references/linkedin-api-setup.md). Standard library only.
+(see references/api-setup.md). Standard library only.
 """
 import argparse
 import datetime as dt
@@ -71,7 +71,7 @@ def save_env(path, updates):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--workspace", default="linkedin-autopilot")
+    ap.add_argument("--workspace", default="post-autopilot")
     ap.add_argument("--org", action="store_true", help="also request w_organization_social for company Page posting")
     args = ap.parse_args()
 
@@ -81,7 +81,7 @@ def main():
     client_secret = env.get("LINKEDIN_CLIENT_SECRET")
     if not client_id or not client_secret:
         sys.exit(f"Missing LINKEDIN_CLIENT_ID / LINKEDIN_CLIENT_SECRET in {env_path}. "
-                 "See references/linkedin-api-setup.md, step 4.")
+                 "See references/api-setup.md, step 4.")
 
     scopes = ["openid", "profile", "w_member_social"]
     if args.org:

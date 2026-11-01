@@ -1,5 +1,5 @@
 # Media library
-Files live in `linkedin-autopilot/media/`.
+Files live in `post-autopilot/media/`.
 
 | File | What it shows | Best for (pillar / post type) | Notes (Page only, approved, etc.) |
 |---|---|---|---|

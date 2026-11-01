@@ -7,7 +7,7 @@ doesn't match, ask them what they see.
 ## 1. Create a LinkedIn developer app
 
 1. Go to **https://www.linkedin.com/developers/apps** and click **Create app**.
-2. **App name:** anything, such as "My LinkedIn Autopilot".
+2. **App name:** anything, such as "My Post Autopilot".
 3. **LinkedIn Page:** LinkedIn requires every app to be associated with a company Page. Use their business Page. If they don't have one, they can create a free Page first. For personal-profile posting, the Page is only a requirement and nothing gets posted to it.
 4. Upload any logo, accept the terms, and click **Create app**.
 5. On the **Settings** tab, the Page admin may need to **verify** the app (LinkedIn generates a verification link for the Page admin to approve).
@@ -31,7 +31,7 @@ Copy the **Client ID** and **Client Secret** from the same tab.
 
 ## 4. Save credentials locally
 
-Create `linkedin-autopilot/.env` (and make sure `.env` is in `.gitignore`):
+Create `post-autopilot/.env` (and make sure `.env` is in `.gitignore`):
 
 ```
 LINKEDIN_CLIENT_ID=paste_here
@@ -46,8 +46,8 @@ The Page's numeric org ID is in the Page admin URL:
 ## 5. Log in once
 
 ```
-python3 scripts/linkedin_auth.py            # personal profile only
-python3 scripts/linkedin_auth.py --org      # also request company Page permission
+python3 scripts/connect_account.py            # personal profile only
+python3 scripts/connect_account.py --org      # also request company Page permission
 ```
 
 A browser opens, they approve, and the script saves `LINKEDIN_ACCESS_TOKEN`,
@@ -59,8 +59,8 @@ Tokens last about **60 days**. Put a reminder in `calendar.md` a week before
 ## 6. Test
 
 ```
-python3 scripts/linkedin_post.py --dry-run
-python3 scripts/linkedin_post.py --file linkedin-autopilot/queue/test-post.md
+python3 scripts/publish_posts.py --dry-run
+python3 scripts/publish_posts.py --file post-autopilot/queue/test-post.md
 ```
 
 For the first real test, use a harmless post. If they want to keep the test private,
@@ -69,15 +69,15 @@ they can set `visibility: CONNECTIONS` in the post file.
 ## 7. Automate
 
 Choose one:
-- **cron** (Mac/Linux): `crontab -e` → `*/15 * * * * cd /full/path/to/project && /usr/bin/python3 /full/path/to/scripts/linkedin_post.py >> linkedin-autopilot/post.log 2>&1`
-- **Windows Task Scheduler:** create a basic task that runs every 15 minutes, with program `python`, arguments `C:\path\to\scripts\linkedin_post.py`, and the project folder as the start directory.
+- **cron** (Mac/Linux): `crontab -e` → `*/15 * * * * cd /full/path/to/project && /usr/bin/python3 /full/path/to/scripts/publish_posts.py >> post-autopilot/post.log 2>&1`
+- **Windows Task Scheduler:** create a basic task that runs every 15 minutes, with program `python`, arguments `C:\path\to\scripts\publish_posts.py`, and the project folder as the start directory.
 - **GitHub Actions:** copy `templates/github-action.yml` to `.github/workflows/linkedin.yml` in a **private** repo and add `LINKEDIN_ACCESS_TOKEN`, `LINKEDIN_PERSON_URN` (and `LINKEDIN_ORG_ID` if used) under Settings → Secrets and variables → Actions. The workflow commits the moved post files back to the repo.
 
 ## Troubleshooting
 
 | Error | Likely cause | Fix |
 |---|---|---|
-| `401 Unauthorized` / `EXPIRED_ACCESS_TOKEN` | Token expired | Re-run `linkedin_auth.py` |
+| `401 Unauthorized` / `EXPIRED_ACCESS_TOKEN` | Token expired | Re-run `connect_account.py` |
 | `403 ACCESS_DENIED` posting as Page | No Community Management API access, or not a Page admin | Use Method A, B, or C for the Page, or check the admin role |
 | `redirect_uri does not match` | Redirect URL missing or typo'd | Add exactly `http://localhost:8765/callback` on the Auth tab |
 | `unauthorized_scope_error` | Product not added to the app | Add "Share on LinkedIn" and "Sign In with LinkedIn using OpenID Connect" |

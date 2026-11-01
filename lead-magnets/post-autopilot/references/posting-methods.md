@@ -78,16 +78,16 @@ Ways Claude can feed the tool:
 published straight from their own computer, a server, or GitHub Actions.
 
 What the user needs:
-- A LinkedIn developer app (free). See `linkedin-api-setup.md`.
+- A LinkedIn developer app (free). See `api-setup.md`.
 - Personal profile posting: the **Share on LinkedIn** product and **Sign In with LinkedIn using OpenID Connect** on the app. Scopes are `openid profile w_member_social`.
 - Company Page posting: LinkedIn's **Community Management API** product, which requires an application and approval from LinkedIn, plus the `w_organization_social` scope. The user must also be a Super admin or Content admin of the Page. If approval isn't realistic, use Method A, B, or C for the Page and Method D for the personal profile.
 
 How it works:
-1. `scripts/linkedin_auth.py` runs a one-time login in the browser and saves an access token to `linkedin-autopilot/.env`. The token lasts about 60 days, and the script reminds them to re-run it.
+1. `scripts/connect_account.py` runs a one-time login in the browser and saves an access token to `post-autopilot/.env`. The token lasts about 60 days, and the script reminds them to re-run it.
 2. Approved posts sit in `queue/` with `status: approved` and a `publish_at` time.
-3. `scripts/linkedin_post.py` publishes every approved post whose time has come, uploads images, records the post URL, and moves the file to `posted/`.
+3. `scripts/publish_posts.py` publishes every approved post whose time has come, uploads images, records the post URL, and moves the file to `posted/`.
 4. The user can run it on a schedule:
-   - **Mac/Linux:** a `cron` entry such as `*/15 * * * * cd /path/to/project && python3 path/to/linkedin_post.py`
+   - **Mac/Linux:** a `cron` entry such as `*/15 * * * * cd /path/to/project && python3 path/to/publish_posts.py`
    - **Windows:** Task Scheduler, running every 15 minutes
    - **Cloud:** `templates/github-action.yml` (runs on GitHub's servers, with the token stored as a GitHub Secret)
    - **Claude Code:** a scheduled task or `/loop` that runs the script

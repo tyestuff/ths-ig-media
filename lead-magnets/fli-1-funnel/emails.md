@@ -1,4 +1,4 @@
-# FLM-1 email sequence: LinkedIn Autopilot
+# FLI-1 email sequence: Post Autopilot
 
 This sequence follows the same value-first rule as the skill: 3 useful emails
 before a light mention of what AI Does It offers. Edit the wording into your own
@@ -11,20 +11,20 @@ with your booking or offer link.
 ---
 
 ## Email 1: send immediately after opt-in
-**Subject:** Your LinkedIn Autopilot skill is here
-**Preview:** Install it in 2 minutes, then say "Set up my LinkedIn."
+**Subject:** Your Post Autopilot skill is here
+**Preview:** Install it in 2 minutes, then say "Start Post Autopilot."
 
 Hi {{contact.first_name}},
 
-Here's your free LinkedIn Autopilot skill for Claude:
+Here's your free Post Autopilot skill for Claude:
 
-👉 **[Download linkedin-autopilot.zip]({{DOWNLOAD_URL}})**
+👉 **[Download post-autopilot.zip]({{DOWNLOAD_URL}})**
 
 **Install it in 2 minutes**
-- **Claude Code:** unzip it and move the `linkedin-autopilot` folder into `~/.claude/skills/`
+- **Claude Code:** unzip it and move the `post-autopilot` folder into `~/.claude/skills/`
 - **Claude.ai / desktop app:** Settings → Capabilities → turn on Skills → Upload skill → choose the zip
 
-Then type: **"Set up my LinkedIn."**
+Then type: **"Start Post Autopilot."**
 
 Claude will interview you in short rounds about your work, your audience, and how
 you write, then build your content plan. Nothing posts until you approve it.
@@ -44,7 +44,7 @@ AI Does It
 
 Hi {{contact.first_name}},
 
-Most AI-written LinkedIn posts sound the same because they start from a template.
+Most AI-written posts sound the same because they start from a template.
 
 The fix is boring but it works: **give Claude your real writing.** Not your best
 writing. Your *normal* writing. The emails you send clients, the Slack message
@@ -63,7 +63,7 @@ sounds exactly like you. That's your first voice sample.
 ---
 
 ## Email 3: Day 4
-**Subject:** A LinkedIn post that asks for nothing
+**Subject:** A post that asks for nothing
 **Preview:** And why it works better than "comment for the link".
 
 Hi {{contact.first_name}},
@@ -81,7 +81,7 @@ so when you *do* mention something you offer (the skill makes sure that only
 happens after at least 3 value posts), people actually listen.
 
 **Try this:** pick one question your clients ask you every week. That's your
-first post. Ask Claude: "Turn this into a LinkedIn post: [the question + your answer]."
+first post. Ask Claude: "Turn this into a post: [the question + your answer]."
 
 [Your name]
 
@@ -94,10 +94,10 @@ first post. Ask Claude: "Turn this into a LinkedIn post: [the question + your an
 Hi {{contact.first_name}},
 
 By now you might have your first week of posts drafted. If so, nice work. If not,
-open Claude and say "Write next week's LinkedIn posts." It'll pick up right where
+open Claude and say "Write next week's posts." It'll pick up right where
 you left off.
 
-A quick win while you're there: ask Claude to review your LinkedIn headline and
+A quick win while you're there: ask Claude to review your profile headline and
 Featured section. Posting works better when your profile tells people what you do.
 
 And if you'd rather have help with this, or want AI doing more of the repetitive

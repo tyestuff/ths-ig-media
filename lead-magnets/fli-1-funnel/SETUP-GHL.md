@@ -1,6 +1,6 @@
 # FLI-1 funnel: GoHighLevel setup
 
-**Goal:** `aidoesit.com/fli-1` → opt-in → thank-you page with the download →
+**Goal:** `myaidoesit.com/fli-1` → opt-in → thank-you page with the download →
 email sequence.
 
 | File | What it is |
@@ -25,7 +25,7 @@ email sequence.
 **Sites → Forms → Builder → + Add Form → "FLI-1 Post Autopilot"**
 - Fields: **First Name**, **Email** (required)
 - Styling: button color `#2F5CFF`, rounded corners, no form title
-- Under form settings, set **On Submit → Open URL** to `https://aidoesit.com/fli-1-thank-you`
+- Under form settings, set **On Submit → Open URL** to `https://myaidoesit.com/fli-1-thank-you`
 - Save, then copy the **embed code** (iframe)
 
 ## 3. Build the funnel
@@ -54,12 +54,8 @@ Until one of these is done, the HTML form shows a "not connected yet" message an
 does **not** capture leads.
 
 ## 4. Connect the domain
-**Settings → Domains:** make sure `aidoesit.com` is connected to this funnel, then
-publish. Check that `https://aidoesit.com/fli-1` loads.
-
-> You mentioned both `aidoesit.com` and `myaidoesit.com`. The images and pages
-> say `aidoesit.com/fli-1`. If you use the other domain, find and replace it in
-> `index.html` and re-export the promo images.
+**Settings → Domains:** make sure `myaidoesit.com` is connected to this funnel, then
+publish. Check that `https://myaidoesit.com/fli-1` loads.
 
 ## 5. Automation workflow
 **Automation → Workflows → + Create → Start from scratch → "FLI-1 Delivery"**
@@ -73,7 +69,7 @@ publish. Check that `https://aidoesit.com/fli-1` loads.
 - Publish the workflow.
 
 ## 6. Test before you promote
-1. Open `aidoesit.com/fli-1` on your phone and on desktop.
+1. Open `myaidoesit.com/fli-1` on your phone and on desktop.
 2. Opt in with a personal email.
 3. Confirm: redirect to the thank-you page → download works → Email 1 arrives → contact is tagged.
 4. Unzip the download and try "Start Post Autopilot" in Claude.
@@ -81,4 +77,4 @@ publish. Check that `https://aidoesit.com/fli-1` loads.
 ## 7. Promote it
 - **Instagram:** `promo-1080x1350.png`, linked in your bio or a link sticker
 - **Professional network posts:** when you mention it, put the link directly in the post or first comment. In keeping with the skill, don't use "comment WORD to get it".
-- Add UTM tags to track sources, for example: `aidoesit.com/fli-1?utm_source=instagram&utm_medium=social&utm_campaign=fli-1`
+- Add UTM tags to track sources, for example: `myaidoesit.com/fli-1?utm_source=instagram&utm_medium=social&utm_campaign=fli-1`
